@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Multi-Platform Prompt Generator</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #f3f4f6, #e2e8f0);
+      padding: 40px;
+      margin: 0;
+    }
+
+    .container {
+      background: white;
+      max-width: 750px;
+      margin: auto;
+      padding: 35px;
+      border-radius: 16px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    }
+
+    h2 {
+      text-align: center;
+      color: #333;
+      margin-bottom: 25px;
+    }
+
+    label {
+      font-weight: 600;
+      display: block;
+      margin-top: 20px;
+      color: #444;
+      font-size: 15px;
+      text-align: left;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 12px 14px;
+      margin-top: 8px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 15px;
+      box-sizing: border-box;
+      transition: 0.2s border-color;
+    }
+
+    input:focus, textarea:focus {
+      border-color: #4CAF50;
+      outline: none;
+    }
+
+    .btn-group {
+      margin-top: 25px;
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .btn-group button {
+      padding: 12px 20px;
+      background: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+      transition: background 0.2s;
+    }
+
+    .btn-group button:hover {
+      background: #3ea144;
+    }
+
+    #output-container {
+      position: relative;
+      margin-top: 30px;
+      background: #f9fafb;
+      border: 1px solid #e5e7eb;
+      border-radius: 12px;
+      padding: 24px 50px 24px 20px;
+      font-family: 'Courier New', monospace;
+      white-space: pre-wrap;
+      text-align: center;
+      word-break: break-word;
+      user-select: text;
+      min-height: 140px;
+
+      max-width: 100%;
+      box-sizing: border-box;
+      overflow-wrap: break-word;
+      overflow-x: auto;
+    }
+
+    #copy-btn {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      background: #10b981;
+      border: none;
+      color: white;
+      padding: 6px 10px;
+      font-size: 13px;
+      border-radius: 6px;
+      cursor: pointer;
+      user-select: none;
+      transition: background-color 0.3s ease;
+    }
+
+    #copy-btn:hover {
+      background: #0e9e70;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>📲 Multi-Platform Prompt Generator</h2>
+
+    <label for="title">📝 Title</label>
+    <input type="text" id="title" placeholder="Enter your post title..." />
+
+    <label for="description">🗒️ Description</label>
+    <textarea id="description" rows="3" placeholder="Enter a short description..."></textarea>
+
+    <label for="tags">🏷️ Hashtags</label>
+    <input type="text" id="tags" placeholder="#dog #petcare #nexgard" />
+
+    <div class="btn-group">
+      <button onclick="generatePrompt('pinterest')">📌 Pinterest Prompt</button>
+      <button onclick="generatePrompt('facebook')">📘 Facebook Prompt</button>
+      <button onclick="generatePrompt('instagram')">📷 Instagram Prompt</button>
+    </div>
+
+    <div id="output-container">
+      <button id="copy-btn" title="Copy to clipboard" onclick="copyPrompt()">📋 Copy</button>
+      <pre id="output"></pre>
+    </div>
+  </div>
+
+  <script>
+    function generatePrompt(type) {
+      const title = document.getElementById('title').value || '[Title]';
+      const desc = document.getElementById('description').value || '[Description]';
+      const tags = document.getElementById('tags').value || '[#Tags]';
+
+      let prompt = '';
+
+      if (type === 'pinterest') {
+        prompt = `
+Create a vertical Pinterest Pin image sized 1000×1500 pixels, optimized for high engagement and visual clarity on Pinterest feeds.
+
+Design requirements:
+1. Top section: Bold, eye-catching headline text: “${title}”
+2. Just below the headline, a short, impactful one-line description: “${desc}”
+3. Bottom corner: Display relevant hashtags in a clean, smaller font: ${tags}
+
+Visual style:
+- Soft, harmonious color palette
+- High-quality central image or illustration (e.g., happy indoor dog, calming wellness theme, tech icon, or cozy interior)
+- Clean modern typography with strong contrast
+- Balanced layout optimized for Pinterest feed scroll
+        `.trim();
+      } else if (type === 'facebook') {
+        prompt = `
+A horizontal Facebook post image, 1200×630 pixels. Left-aligned or top section: large bold headline “${title}”. Beside or below it: concise impactful description text: “${desc}”. In bottom corner (e.g. bottom right): small clean hashtags: ${tags}.
+
+Visual styling: soft yet vibrant, harmonious color palette, good contrast for Facebook feed. Central or left-side image or illustration matching the theme (e.g. happy pet in warm setting, serene wellness shot, minimalist tech/business layout, cozy lifestyle interior). Clear typography hierarchy, modern professional layout with clean spacing, and safe margins so feed preview doesn’t crop text.
+        `.trim();
+      } else if (type === 'instagram') {
+        prompt = `
+A square Instagram post graphic, 1080×1080 pixels. At the top or center overlay: bold, eye-catching headline reading “${title}”. Directly beneath: a clean one-line description: “${desc}”. In a bottom corner, smaller neat hashtags: ${tags}.
+
+Visual style: soft harmonious color palette, warm inviting tone, modern professional design. Include a high-quality central image or illustration relevant to the topic (e.g. happy dog indoors, calming wellness scene, sleek business icons, or cozy lifestyle interior). Text overlaid with high contrast for readability on mobile. Balanced composition with ample whitespace, scroll‑stopping clarity optimized for Instagram feed.
+        `.trim();
+      }
+
+      document.getElementById('output').textContent = prompt;
+    }
+
+    function copyPrompt() {
+      const promptText = document.getElementById('output').textContent;
+      if (!promptText) return alert('Nothing to copy! Generate a prompt first.');
+
+      navigator.clipboard.writeText(promptText).then(() => {
+        alert('Prompt copied to clipboard!');
+      }).catch(() => {
+        alert('Failed to copy prompt.');
+      });
+    }
+  </script>
+</body>
+</html>
