@@ -1,373 +1,387 @@
 <!DOCTYPE html>
-<html lang="en" >
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Pro Multi-Platform Prompt Generator</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Professional Multi-Platform Prompt Generator tool for social media content creators. Generate Pinterest, Facebook, Instagram, Shorts, Video Descriptions, Blog Posts and SEO Keywords." />
+  <meta name="author" content="Your Name or Brand" />
+  <title>🧰 Pro Prompt Generator Tool</title>
+  <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/3064/3064197.png" />
   <style>
-    /* Reset & Base */
-    *, *::before, *::after {
-      box-sizing: border-box;
-    }
+    *, *::before, *::after { box-sizing: border-box; }
     body {
       margin: 0;
       font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+      color: #f0f4f8;
       min-height: 100vh;
       display: flex;
       justify-content: center;
       align-items: flex-start;
-      padding: 50px 20px;
-      color: #f0f4f8;
-      user-select: none;
+      padding: 40px 20px;
     }
     .container {
       background: #1e2a38;
-      max-width: 800px;
       width: 100%;
-      border-radius: 20px;
-      padding: 40px 50px 50px 50px;
-      box-shadow:
-        0 8px 24px rgba(0,0,0,0.5),
-        0 0 8px #0ea5e9aa inset;
+      max-width: 900px;
+      border-radius: 22px;
+      padding: 40px 50px;
+      box-shadow: 0 12px 28px rgba(0,0,0,0.6), inset 0 0 14px #0ea5e9cc;
       display: flex;
       flex-direction: column;
-      gap: 30px;
-      user-select: text;
+      gap: 28px;
     }
-    h2 {
-      font-weight: 800;
-      font-size: 2.8rem;
+    h1 {
+      font-size: 2.7rem;
+      font-weight: 900;
       text-align: center;
       color: #0ea5e9;
-      letter-spacing: 0.1em;
-      text-shadow: 0 0 8px #0ea5e9bb;
-      user-select: none;
-      margin: 0;
+      text-shadow: 0 0 12px #0ea5e9dd;
+      margin: 0 0 12px;
     }
-
     label {
       font-weight: 600;
-      font-size: 1.1rem;
-      margin-bottom: 6px;
+      font-size: 1.15rem;
       color: #7dd3fc;
-      user-select: none;
       display: block;
-      text-shadow: 0 0 4px #0284c7aa;
+      margin-bottom: 10px;
+      user-select: none;
     }
-
     input[type="text"], textarea {
       width: 100%;
-      padding: 14px 20px;
-      font-size: 1.1rem;
-      border-radius: 14px;
-      border: 2px solid #0284c7;
+      padding: 16px 22px;
+      border-radius: 18px;
       background: #152b44;
-      color: #e0f2fe;
+      border: 2px solid #0284c7;
+      color: #d0e8ff;
+      font-size: 1.1rem;
       font-weight: 600;
       resize: vertical;
-      box-shadow: inset 0 0 6px #0ea5e9aa;
-      transition: border-color 0.3s ease, background-color 0.3s ease;
-      outline-offset: 2px;
-      outline-color: transparent;
-      font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      box-shadow: inset 0 0 10px #0ea5e9bb;
+      transition: border-color 0.3s ease, background 0.3s ease;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     }
-    input[type="text"]:focus,
-    textarea:focus {
+    input:focus, textarea:focus {
       border-color: #0ea5e9;
       background: #1b3a63;
-      outline-color: #0ea5e9cc;
-      box-shadow: 0 0 12px #0ea5e9dd;
+      box-shadow: 0 0 20px #0ea5e9cc;
+      outline: none;
     }
-
-    /* Button group */
     .btn-group {
       display: flex;
-      gap: 16px;
       flex-wrap: wrap;
+      gap: 16px;
       justify-content: center;
-      margin-top: 10px;
+      margin-top: 8px;
     }
     button {
       cursor: pointer;
-      background: #0c1321; /* Dark button background */
-      color: #0ea5e9;
-      border: 2px solid #0ea5e9;
-      border-radius: 14px;
+      border-radius: 18px;
       font-weight: 700;
       font-size: 1.1rem;
-      padding: 14px 28px;
-      box-shadow:
-        0 0 10px #0ea5e9bb;
-      transition: background 0.3s ease, color 0.3s ease, transform 0.15s ease, box-shadow 0.3s ease;
+      padding: 16px 28px;
+      border: 2.5px solid #0ea5e9;
+      background: #0c1321;
+      color: #0ea5e9;
+      box-shadow: 0 0 16px #0ea5e9bb;
+      transition: all 0.25s ease;
       flex: 1 1 180px;
       max-width: 240px;
       display: flex;
-      align-items: center;
       justify-content: center;
-      gap: 10px;
+      align-items: center;
       user-select: none;
+      line-height: 1.2;
+    }
+    button:hover:not(:disabled) {
+      background: #0ea5e9;
+      color: #0c1321;
+      box-shadow: 0 0 28px #0ea5e9ee;
+      transform: translateY(-4px);
     }
     button:disabled {
       background: #3b536b;
-      box-shadow: none;
-      cursor: not-allowed;
       color: #7a8ca1;
       border-color: #7a8ca1;
-      transform: none;
+      box-shadow: none;
+      cursor: not-allowed;
     }
-    button:not(:disabled):hover {
-      background: #0ea5e9;
-      color: #0c1321;
-      box-shadow:
-        0 0 18px #0ea5e9ee,
-        0 0 40px #0ea5e9bb;
-      transform: translateY(-3px);
-    }
-    button:not(:disabled):active {
-      transform: translateY(-1px);
-      box-shadow:
-        0 0 10px #0ea5e9bb;
-    }
-
-    /* Output area */
     #output-container {
       position: relative;
       background: #0c1620;
       border-radius: 20px;
-      padding: 30px 40px 30px 30px;
-      box-shadow: inset 0 0 18px #0ea5e9cc;
+      padding: 30px 40px;
+      box-shadow: inset 0 0 24px #0ea5e9cc;
       font-family: 'Courier New', Courier, monospace;
-      color: #7dd3fc;
       font-size: 1.1rem;
-      line-height: 1.4;
-      white-space: pre-wrap;
-      max-height: 300px;
+      color: #7dd3fc;
+      max-height: 400px;
       overflow-y: auto;
+      white-space: pre-wrap;
       user-select: text;
     }
-
-    /* Copy button */
     #copy-btn {
       position: absolute;
-      top: 20px;
-      right: 20px;
+      top: 22px;
+      right: 22px;
       background: #0ea5e9;
-      border: none;
-      padding: 10px 18px;
-      font-size: 14px;
-      font-weight: 700;
-      border-radius: 14px;
       color: white;
+      padding: 12px 18px;
+      border: none;
+      border-radius: 14px;
+      font-weight: 700;
       cursor: pointer;
-      box-shadow: 0 6px 18px #0ea5e9cc;
-      transition: background-color 0.3s ease, transform 0.15s ease;
-      display: flex;
-      align-items: center;
-      gap: 8px;
+      box-shadow: 0 8px 22px #0ea5e9cc;
+      transition: 0.3s ease;
       user-select: none;
+      font-size: 1rem;
     }
     #copy-btn:hover {
       background: #0284c7;
-      transform: scale(1.07);
-      box-shadow: 0 8px 22px #0284c7cc;
+      transform: scale(1.1);
     }
-    #copy-btn:active {
-      transform: scale(0.95);
-      box-shadow: 0 5px 15px #0284c7cc;
-    }
-
-    /* Responsive */
-    @media (max-width: 600px) {
+    @media (max-width: 640px) {
       .container {
-        padding: 30px 25px 35px 25px;
+        padding: 30px 25px;
       }
       button {
-        max-width: 100%;
         flex: 1 1 100%;
+        max-width: none;
       }
       #output-container {
-        max-height: 220px;
         font-size: 1rem;
+        max-height: 260px;
       }
     }
   </style>
 </head>
 <body>
-  <main class="container" role="main" aria-label="Multi-Platform Prompt Generator">
-    <h2>📲 Multi-Platform Prompt Generator</h2>
+  <main class="container" role="main" aria-label="Prompt Generator">
+    <h1>📲 Pro Prompt Generator Tool</h1>
 
-    <label for="title">📝 Title <span aria-hidden="true" style="color:#f87171">*</span></label>
-    <input type="text" id="title" placeholder="Enter your post title..." aria-required="true" />
-
-    <label for="description">🗒️ Description <span aria-hidden="true" style="color:#f87171">*</span></label>
-    <textarea id="description" rows="3" placeholder="Enter a short description..." aria-required="true"></textarea>
-
-    <label for="tags">🏷️ Hashtags (Optional for Pinterest, Facebook, Instagram)</label>
-    <input type="text" id="tags" placeholder="#dog #petcare #nexgard" aria-required="false" />
-
-    <div class="btn-group" role="group" aria-label="Generate prompt for platform">
-      <button type="button" id="btn-pinterest" aria-label="Generate Pinterest prompt" title="Requires Title and Description" onclick="handleGenerate('pinterest')">📌 Pinterest</button>
-      <button type="button" id="btn-facebook" aria-label="Generate Facebook prompt" title="Requires Title and Description" onclick="handleGenerate('facebook')">📘 Facebook</button>
-      <button type="button" id="btn-instagram" aria-label="Generate Instagram prompt" title="Requires Title and Description" onclick="handleGenerate('instagram')">📷 Instagram</button>
-      <button type="button" id="btn-short" aria-label="Generate Short Video prompt" title="Requires Title & Description" onclick="handleGenerate('short')">🎬 Short Video</button>
-      <button type="button" id="btn-videoDesc" aria-label="Generate Video Description prompt" title="Requires Title" onclick="handleGenerate('videoDesc')">🎥 Video Description</button>
+    <div>
+      <label for="title">📝 Title <span style="color:#f87171">*</span></label>
+      <input type="text" id="title" placeholder="Enter your post title..." autocomplete="off" required />
     </div>
 
-    <div id="output-container" tabindex="0" aria-live="polite" aria-atomic="true" aria-label="Generated prompt output area">
-      <button id="copy-btn" title="Copy to clipboard" onclick="copyPrompt()" aria-label="Copy prompt to clipboard">📋 Copy</button>
-      <pre id="output" aria-label="Generated prompt output"></pre>
+    <div>
+      <label for="description">🗒️ Description <span style="color:#f87171">*</span></label>
+      <textarea id="description" rows="3" placeholder="Enter a short description..." autocomplete="off" required></textarea>
+    </div>
+
+    <div>
+      <label for="tags">🏷️ Hashtags (optional)</label>
+      <input type="text" id="tags" placeholder="#marketing #growth #branding" autocomplete="off" />
+    </div>
+
+    <div class="btn-group" role="group" aria-label="Prompt type buttons">
+      <button type="button" onclick="handleGenerate('pinterest')">📌 Pinterest</button>
+      <button type="button" onclick="handleGenerate('facebook')">📘 Facebook</button>
+      <button type="button" onclick="handleGenerate('instagram')">📷 Instagram</button>
+      <button type="button" onclick="handleGenerate('short')">🎬 Shorts</button>
+      <button type="button" onclick="handleGenerate('videoDesc')">🎥 Video Desc</button>
+      <button type="button" onclick="handleGenerate('blog')">📝 Blog Post</button>
+      <button type="button" onclick="handleGenerate('keyword')">🔑 Keyword</button>
+    </div>
+
+    <div id="output-container" tabindex="0" aria-live="polite" aria-label="Generated prompt output">
+      <button id="copy-btn" onclick="copyPrompt()" aria-label="Copy prompt to clipboard">📋 Copy</button>
+      <pre id="output"></pre>
     </div>
   </main>
 
   <script>
-    function validateInputs(type) {
-      const title = document.getElementById('title').value.trim();
-      const desc = document.getElementById('description').value.trim();
-      // Tags are optional for pinterest/facebook/instagram now
-      // only required for short and videoDesc as before
-
-      if (type === 'videoDesc') {
-        if (!title) {
-          alert('Please enter the Title (required for Video Description).');
-          return false;
-        }
-      } else if (type === 'short') {
-        if (!title || !desc) {
-          alert('Please enter both Title and Description (required for Short Video).');
-          return false;
-        }
-      } else { // pinterest, facebook, instagram require title & desc only
-        if (!title || !desc) {
-          alert('Please enter Title and Description (required for Pinterest, Facebook, and Instagram).');
-          return false;
-        }
-      }
-      return true;
-    }
-
     function handleGenerate(type) {
-      if (!validateInputs(type)) {
-        document.getElementById('output').textContent = '';
+      const title = document.getElementById("title").value.trim();
+      const desc = document.getElementById("description").value.trim();
+      const tags = document.getElementById("tags").value.trim() || '[#Tags]';
+
+      if (!title || (["short", "facebook", "pinterest", "instagram"].includes(type) && !desc)) {
+        alert("Please fill in the required fields.");
         return;
       }
-      generatePrompt(type);
-    }
 
-    function generatePrompt(type) {
-      const title = document.getElementById('title').value.trim() || '[Insert your title here]';
-      const desc = document.getElementById('description').value.trim() || '[Insert your description here]';
-      const tagsRaw = document.getElementById('tags').value.trim();
-      // If no tags entered, default text will show optional
-      const tags = tagsRaw ? tagsRaw : '[#Tags]';
+      let prompt = "";
+      switch (type) {
+        case "pinterest":
+          prompt = `
+Pinterest Pin 1000×1500 px
 
-      let prompt = '';
+Headline: “${title}”
+Description: “${desc}”
+Hashtags: ${tags}
 
-      if (type === 'pinterest') {
-        prompt = `
-Create a vertical Pinterest Pin image sized 1000×1500 pixels, optimized for high engagement and visual clarity on Pinterest feeds.
+Design:
+- Eye-catching title on top
+- High-quality visual
+- Modern font, soft colors
+          `.trim();
+          break;
 
-Design requirements:
-1. Top section: Bold, eye-catching headline text: “${title}”
-2. Just below the headline, a short, impactful one-line description: “${desc}”
-3. Bottom corner: Display relevant hashtags in a clean, smaller font: ${tags}
+        case "facebook":
+          prompt = `
+Facebook Post Image (1200×630 px)
 
-Visual style:
-- Soft, harmonious color palette
-- High-quality central image or illustration (e.g., happy indoor dog, calming wellness theme, tech icon, or cozy interior)
-- Clean modern typography with strong contrast
-- Balanced layout optimized for Pinterest feed scroll
-        `.trim();
-      } else if (type === 'facebook') {
-        prompt = `
-A horizontal Facebook post image, 1200×630 pixels. Left-aligned or top section: large bold headline “${title}”. Beside or below it: concise impactful description text: “${desc}”. In bottom corner (e.g. bottom right): small clean hashtags: ${tags}.
+Title: “${title}”
+Text: “${desc}”
+Hashtags: ${tags}
 
-Visual styling: soft yet vibrant, harmonious color palette, good contrast for Facebook feed. Central or left-side image or illustration matching the theme (e.g. happy pet in warm setting, serene wellness shot, minimalist tech/business layout, cozy lifestyle interior). Clear typography hierarchy, modern professional layout with clean spacing, and safe margins so feed preview doesn’t crop text.
-        `.trim();
-      } else if (type === 'instagram') {
-        prompt = `
-A square Instagram post graphic, 1080×1080 pixels. At the top or center overlay: bold, eye-catching headline reading “${title}”. Directly beneath: a clean one-line description: “${desc}”. In a bottom corner, smaller neat hashtags: ${tags}.
+Design:
+- Horizontal layout
+- Left-aligned text
+- Clear CTA
+          `.trim();
+          break;
 
-Visual style: soft harmonious color palette, warm inviting tone, modern professional design. Include a high-quality central image or illustration relevant to the topic (e.g. happy dog indoors, calming wellness scene, sleek business icons, or cozy lifestyle interior). Text overlaid with high contrast for readability on mobile. Balanced composition with ample whitespace, scroll‑stopping clarity optimized for Instagram feed.
-        `.trim();
-      } else if (type === 'short') {
-        prompt = `
-Product Title: ${title}
-Product Description: ${desc}
+        case "instagram":
+          prompt = `
+Instagram Post (1080×1080 px)
 
-🔊 Audio Requirements:
+Main Text: “${title}”
+Description: “${desc}”
+Tags: ${tags}
 
-No voiceover narration.
+Style:
+- Bold typography
+- Bright, scroll-stopping color
+- Central image or graphic
+          `.trim();
+          break;
 
-Use realistic sound effects that match the scenes: dog scratching, chewing sounds, happy dog sounds.
+        case "short":
+          prompt = `
+🎬 Short Video Script
 
-Add soft, upbeat background music during the whole video, balanced not to overpower sound effects.
+Title: ${title}
+Desc: ${desc}
 
-🎥 Visual Style & Instructions:
+Include:
+- 25 sec max, 9:16 ratio
+- No narration, only SFX + upbeat music
+- Problem > Product > Happy pet
+          `.trim();
+          break;
 
-Cartoon-realistic animation style: dogs and scenes should look stylized but lifelike.
+        case "videoDesc":
+          prompt = `
+🎥 Video Description for YouTube
 
-Scenes to include:
+Title: ${title}
 
-Dog scratching or showing discomfort (problem)
+Hey pet lovers! 🐾 ${desc}
 
-Dog happily eating the flea chew or playing (solution)
+Order now 👉 GuardPaws.store
 
-Final scene with product packaging and a subtle visual “Shop Now” prompt (no text overlay on other scenes).
+Tags: ${tags}
+          `.trim();
+          break;
 
-🎨 Mood & Colors:
+        case "blog":
+          prompt = `
+Act as a highly skilled SEO blog writer who writes like a real human — with emotion, storytelling, personality, and clarity.
 
-Warm, natural tones, cozy indoor setting.
+You understand how to create helpful, unique blog content that:
 
-Visually inviting, pet-friendly atmosphere.
+- Sounds fully human
+- Feels emotionally engaging and personal
+- Avoids robotic or repetitive tone
+- Passes AI detection tools
+- Is SEO-optimized using natural keyword usage
 
-📱 Format:
+🎯 Topic:
+“${title}”
 
-Vertical 1080x1920 for YouTube Shorts
+Now write a complete blog post based on that title using the following structure and style:
 
-Duration: about 25 seconds
+🔹 Step-by-Step Structure:
 
-Must be attention-grabbing in the first 3 seconds.
-        `.trim();
-      } else if (type === 'videoDesc') {
-        prompt = `
-Video Title:
-${title}
+1. ✅ Create a long-tail, SEO-friendly **Blog Title**  
+   - Use low-competition, niche keywords  
+   - Make it catchy, specific, and emotional if possible  
 
-Video Description:
-Hey dog lovers! 🐶💕 Protect your indoor pup from pesky fleas the safe and natural way with Vet-Approved Soft Flea Chews from GuardPaws.store!
+2. ✅ Write a compelling **Meta Description** (max 160 characters)  
+   - Include the main keyword naturally  
+   - Make it feel personal or helpful  
 
-If your furry friend weighs between 10–24 lbs, this tasty, gentle formula is designed just for them — keeping fleas away without any harsh chemicals.
+3. ✅ Full Blog Body with Headings:
+   - **H1**: Blog Title  
+   - **H2**: Introduction  
+     - Start with a relatable emotion, situation, or real-life question  
+     - Pull the reader in emotionally or practically  
+   - **H3 / H4**: Core content sections  
+     - Break into clear, helpful points  
+     - Use examples, mini-stories, or analogies  
+     - Use at least one **H5** heading inside a subtopic or tip list  
+   - **H3 or H4**: “Comparison” or “Differences” section  
+     - Bullet points or table comparing options/ideas  
+   - **H2 or H3**: Conclusion  
+     - Reflect on the reader’s needs  
+     - Offer advice, emotional support, or a practical takeaway  
 
-Why thousands of pet parents trust Guard Paws NexGard:
-🌿 All-natural ingredients, vet-approved for safety
-🍖 Soft, delicious chews dogs actually want to eat
-⚡ Fast, effective flea protection for indoor dogs
-💚 Made with love to keep your dog happy and healthy
+4. ✅ End with a “Bonus” section:  
+   - List 3–5 low-competition keywords that were naturally used
 
-Don’t wait until fleas ruin your pup’s comfort!
-👉 Click here www.Guardpaws.store to order now and see the difference Guard Paws can make!
+🧠 Writing Style Guidelines:
 
-Tags:
-${tags}
-        `.trim();
+- Use **emotion-driven language** (hope, worry, frustration, joy, care, comfort)  
+- Speak **like a friend or guide**, not a formal robot  
+- Vary sentence lengths and structure  
+- Ask questions to the reader  
+- Share possible scenarios or common thoughts people have  
+- Don’t keyword stuff — keep it natural and useful  
+- Paragraphs: 2–4 lines each  
+- Use bullet points, bolding, and spacing for easy reading  
+- Make it **feel like it was written by someone who truly cares**
+
+📌 Final Note:
+- Output should be **100% unique**  
+- Must feel **human-written**, **emotionally intelligent**, and **SEO-ready**  
+- Keep it helpful, warm, and engaging — like real blog content written with heart
+          `.trim();
+          break;
+
+        case "keyword":
+          prompt = `
+You are an expert SEO keyword analyst with mastery in uncovering rare, untapped, and ultra-low competition keywords that can quickly boost new websites' rankings.
+
+Given the content title below, perform deep semantic analysis and competitive keyword research to generate:
+
+1. A list of exactly 20 unique short-tail keywords:
+   - Highly relevant to the title
+   - Extremely low competition or virtually unused
+   - Clear, concise, and high potential for quick ranking
+
+2. A list of exactly 30 unique long-tail keywords and phrases:
+   - Natural, conversational, and highly targeted
+   - Long, specific search queries with minimal competition
+   - Suitable for attracting highly engaged niche audiences
+
+Requirements:
+- Do NOT include generic or overly broad keywords.
+- Avoid common or saturated terms.
+- Prioritize originality, specificity, and SEO potential.
+- Present both lists clearly and separately with bullet points.
+- Maintain consistent formatting for easy copy-paste.
+
+Content Title: "${title}"
+
+Begin the keyword generation now.
+          `.trim();
+          break;
       }
 
-      document.getElementById('output').textContent = prompt;
-      // Accessibility: focus output container
-      document.getElementById('output-container').focus();
+      document.getElementById("output").textContent = prompt;
+      document.getElementById("output-container").focus();
     }
 
     function copyPrompt() {
-      const promptText = document.getElementById('output').textContent;
-      if (!promptText || promptText.trim() === '') {
-        alert('Nothing to copy! Generate a prompt first.');
-        return;
-      }
+      const text = document.getElementById("output").textContent;
+      if (!text) return alert("No content to copy!");
 
-      navigator.clipboard.writeText(promptText).then(() => {
-        alert('Prompt copied to clipboard!');
+      navigator.clipboard.writeText(text).then(() => {
+        alert("Copied to clipboard!");
       }).catch(() => {
-        alert('Failed to copy prompt.');
+        alert("Copy failed.");
       });
     }
   </script>
